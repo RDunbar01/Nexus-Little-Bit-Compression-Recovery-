@@ -1,7 +1,150 @@
 # NEXUS LittleBit Compression & Recovery
 
+## Created with AI-assisted coding
+
+**Rich Dunbar · NEXUS Emerging Technology · Build → Measure → Learn**
+
+I created this program using **AI-assisted coding**, developing it through repeated build–measure–learn iterations. I directed the project and used AI to help implement, debug, review and refine the tools.
+
+The project began as a **proof of concept for an independent, modified implementation inspired by LittleBit**, the ultra-low-bit compression research developed by researchers at **Samsung Research**. It combines my own implementation of the factor-compression approach with code and development work from my **Nexus web-based inference engine, Nexus Adapter tools and WebGPU backend**.
+
+The aim is to explore how far a small language model can be compressed, then recover useful behavior through further training on local hardware.
+
+> [!IMPORTANT]
+> **This is an experimental NEXUS project, not the official Samsung LittleBit implementation.**
+> Compression, successful inference and recovered language quality are separate milestones. Sub-1-bit storage does not mean that training uses sub-1-bit arithmetic or sub-1-bit VRAM per parameter.
+
+## Recovery progress at a glance
+
+| Milestone | Result | Evidence |
+| --- | ---: | --- |
+| Original Q8 model file | **144.81 MB** | Historical source file matched to the recovery report by SHA-256 |
+| Saved compressed student file | **13.66 MB** | Saved model artifact, measured file size |
+| File-size reduction | **90.56%** | Calculated from the two file sizes |
+| Compression factor | **10.60× smaller** | Original bytes divided by compressed bytes |
+| Initial post-compression perplexity | **Over 3 million** | Developer history; an earlier report records 3,857,725.91 |
+| Latest displayed student perplexity | **284.00** | Supplied recovery screenshot |
+| Original Q8 perplexity in that screenshot | **37.63** | Supplied recovery screenshot |
+| Recovery training processed so far | **About 4 million token exposures** | Developer-reported progress |
+| Hardware | **AMD Radeon RX 7900 XT** | Supplied hardware-monitor screenshot |
+| Standalone recovery application | **Active recovery work; more advanced workflow** | Developer report; current after-recovery result remains pending |
+
+The saved model-size evidence and the latest recovery screenshot are from different records. The screenshot does not identify its checkpoint hash, so the 13.66 MB file is a **documented historical compressed artifact**, not a verified identification of the latest 4-million-token checkpoint.
+
+## Original size versus compressed size
+
+| Artifact | Exact bytes | Decimal MB | Binary MiB |
+| --- | ---: | ---: | ---: |
+| Matching original SmolLM2 Q8 teacher | 144,811,360 | 144.811360 | 138.102875 |
+| Saved compressed student | 13,664,928 | 13.664928 | 13.031891 |
+| **Bytes saved** | **131,146,432** | **131.146432** | **125.070984** |
+
+```mermaid
+xychart-beta
+    title "Historical SmolLM2 model file sizes"
+    x-axis ["Original Q8", "Compressed student"]
+    y-axis "File size (decimal MB)" 0 --> 150
+    bar [144.811360, 13.664928]
+```
+
+**Sub-1-bit, not sub-0.1-bit:** Using the model's nominal 135 million parameters, the saved student's complete file corresponds to approximately **0.81 bits per parameter**. This is a whole-file estimate, including container overhead. It is different from a selected matrix target or the **Q0.691** build label.
+
+The reduction is **lossy model compression followed by recovery training**. It is not the separate NEXUS Zero Loss Compression project, and it does not preserve the original Q8 model's behavior automatically.
+
+## Recovery evidence
+
+### Current displayed comparison
+
+```mermaid
+xychart-beta
+    title "Displayed perplexity — lower is better"
+    x-axis ["Original Q8", "Student entering current run"]
+    y-axis "Perplexity" 0 --> 300
+    bar [37.63, 284.00]
+```
+
+![Recovery panel showing original Q8 perplexity 37.63, student before-recovery perplexity 284.00 and after-recovery pending](assets/recovery-perplexity.png)
+
+The screenshot labels the student score **“Before recovery: 284.00”** and the current run's **“After recovery”** result **“Pending.”** I report that this student has already undergone earlier recovery work; 284 is its displayed starting score for this next run.
+
+The panel states that automatic before/after evaluation uses the same held-out prefix, **up to 32,768 prediction positions out of 834,292 available**. A configured cap is not itself proof of how many positions a completed evaluation scored; retain the exported metric details.
+
+### Progress across recovery sessions
+
+```mermaid
+flowchart LR
+    A["Initial compression<br/>Developer reports PPL above 3 million"] --> B["Recovery across multiple sessions<br/>About 4M token exposures reported"]
+    B --> C["Latest displayed student<br/>PPL 284.00 before current run"]
+    C --> D["Current run<br/>After-recovery evaluation pending"]
+```
+
+This is a **development history**, not a matched benchmark curve. An older report used a Q8 baseline of approximately **88.22**, while the latest screenshot displays **37.63**. Corpus, evaluation protocol or other settings may differ; the records do not establish an identical evaluation across the entire history.
+
+The screenshots support the displayed values. They do not independently prove the full training history, restored original-model quality or a particular percentage improvement in reasoning.
+
+## Radeon GPU evidence and optimization
+
+![AMD Radeon RX 7900 XT monitor showing 62 percent utilization and 9322 MB of GPU memory](assets/radeon-recovery-metrics.png)
+
+| Measurement | Visible snapshot |
+| --- | ---: |
+| GPU | AMD Radeon RX 7900 XT |
+| GPU utilization | **62%** |
+| GPU memory usage | **9,322 MB** |
+| GPU temperature | **47°C** |
+| Total board power | **70 W** |
+| CPU utilization | **13%** |
+| System memory usage | **14.7 GB of 32 GB** |
+
+I have processed approximately **4 million training-token exposures** on my Radeon 7900 during the recovery work described here. I observe utilization commonly around **50–60%**, sometimes rising toward **90%**. The screenshot captures one moment at 62%; it is not an average over the complete run.
+
+There is further optimization work to explore, including workload size, dispatch overhead and GPU scheduling. Utilization alone does not establish how much faster recovery can become. Improvements should be measured in **training tokens per second**, alongside memory use, numerical correctness and recovered-model quality.
+
+The hardware monitor is a device-wide snapshot. It does not by itself attribute every allocation to this application or prove that every stage executes entirely on the GPU.
+
+## Three recovery corpora and the Nexus OS goal
+
+I have used AI to assist in creating three recovery corpora. They support different stages of the experiment and should not be confused with the original v11 bundled curriculum.
+
+| Corpus | Purpose | Current description |
+| --- | --- | --- |
+| **1. Condensed general recovery** | Rebuild basic language behavior after aggressive compression | A lean, condensed corpus informed by the original SmolLM2 training sources; not a reproduction of its complete training data |
+| **2. Nexus OS material** | Introduce the project's terminology, applications and operating-system context | Nexus-specific recovery material used in the ongoing development process |
+| **3. Expanded knowledge corpus** | Broaden language and technical coverage | Approximately **26 million words**, according to my preparation estimate; intended as the next larger recovery corpus |
+
+The expanded corpus covers **artificial intelligence, English language, emergence, coding, selected AI research areas, 2026 Python developments and information about the applications I have created for the Nexus OS bare-metal platform**.
+
+I have sought to ground its technical material in academic and other authoritative references. AI-assisted preparation and source citations do not, by themselves, establish that every passage is correct or independently verified. Source records, dates, licenses, deduplication and held-out evaluation should accompany the corpus.
+
+**Words are not tokens.** The 26-million-word estimate must not be treated as 26 million model tokens or as a completed training run. The approximately 4 million token exposures reported above are a separate measure and may include repeated material.
+
+### Planned role inside Nexus OS
+
+I have plans for a recovered SmolLM2 model inside **Nexus OS**. The intended sequence is:
+
+1. Continue recovering usable base-model behavior.
+2. Compare the recovered model with the original using matched evaluation.
+3. Train the specialized Nexus OS adapter once base recovery is satisfactory.
+4. Test integration with the custom kernel and its interfaces.
+
+These are development goals. This README does not establish that the current student is ready for autonomous scheduling, kernel control or security-sensitive deployment.
+
+## Original recovery workflow and standalone Recovery Studio
+
+| Route | Role | Status |
+| --- | --- | --- |
+| **Original v1 integrated recovery** | Initial end-to-end proof of concept, including a custom SmolLM2-oriented corpus | I report that this workflow works; that is not a claim of restored original-model quality |
+| **v11 package documented below** | Compression, inference and its packaged recovery implementation | Retained release-specific setup, formats and limitations |
+| **Separate standalone recovery program** | More advanced recovery workflow added alongside the project | I report higher recovery throughput in my use; no matched tokens-per-second benchmark is supplied here |
+
+The standalone program advances the recovery workflow, while the original program remains useful for understanding the initial proof of concept. **Training throughput and text-generation throughput are different measurements**; future comparisons should report which one was measured and use the same models, corpus and settings.
+
+Do not assume a corpus or checkpoint format from one version can be imported into another without checking its documentation.
+
+---
+
 **An experimental WebGPU-based LLM compression, inference, and recovery toolkit**\
-**Developer:** NEXUS Emerging Technology · **Release:** v11 · **Date:** 8 October 2026
+**Developer:** Rich Dunbar · NEXUS Emerging Technology · **Package:** v11, 8 October 2026 · **Progress update:** 10 October 2026
 
 **Important**
 
@@ -117,11 +260,13 @@ The browser uses **WebGPU** for GPU buffer management and **WGSL compute shaders
 
 WebGPU may expose adapter limits, but does not reliably report total computer memory or free VRAM. Hardware compatibility, throughput and quality require testing on the specific browser, driver and GPU.
 
-## Developer-reported Radeon run
+## Recorded validation versus current recovery progress
 
-The NEXUS developer reports running a **10-million-token recovery** using an AMD Radeon 7900 GPU and the browser-native WebGPU backend. This is a developer report, **not an independently reproduced benchmark**. Exact model-quality changes, throughput, elapsed time, driver/browser versions and final loss have not been established from the supplied evidence.
+Historical validation in `VALIDATION.md` includes CPU logit/tokenizer comparisons, software-adapter shader tests and tiny-model gradient/optimizer checks. These support bounded implementation claims.
 
-Historical validation in `VALIDATION.md` predates the developer's report. It includes CPU logit/tokenizer comparisons, software-adapter shader tests, and tiny-model gradient/optimizer checks, **not** a completed independent hardware recovery benchmark.
+The newer developer-reported Radeon recovery work, current screenshots and historical size evidence are presented at the top of this README. The latest reported total is **approximately 4 million token exposures for the work described here**. The original curriculum's **10-million-exposure budget** is a configured target, not evidence that this current run has completed it.
+
+The original v11 corpus and the three newer recovery corpora are separate records. Preserve their individual manifests, tokenizer settings, splits and source notices.
 
 ## Project files
 
@@ -157,9 +302,9 @@ Read `PYTORCH_STUDIO_README.md` and `requirements.txt` before installing depende
 
 **SmolLM2:** The underlying pretrained and instruction-tuned model was developed by the **Hugging Face SmolLM team**, including Loubna Ben Allal, Anton Lozhkov, Elie Bakouch, Gabriel Martín Blázquez and their coauthors. See the [official SmolLM2-135M-Instruct model card](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct), [upstream repository](https://github.com/huggingface/smollm) and [SmolLM2 paper](https://arxiv.org/abs/2502.02737). **NEXUS SmolLM2 Q0.691 is a modified compressed derivative, not an original NEXUS-trained foundation model.**
 
-**LittleBit:** This independent NEXUS experiment is inspired by **Banseok Lee, Dongkyu Kim, Youngcheon You, and Youngmin Kim**, *LittleBit: Ultra Low-Bit Quantization via Latent Factorization* (NeurIPS 2025). It adapts the underlying idea to a different Q8-teacher compression/recovery workflow, browser-native inference, a **NEXUS-designed** five-stage token curriculum, custom factor GGUF representations, and experimental WebGPU recovery. The five-stage curriculum is a NEXUS extension, **not a five-stage method prescribed by Samsung's paper**.
+**LittleBit:** This independent NEXUS experiment is inspired by **Banseok Lee, Dongkyu Kim, Youngcheon You, and Youngmin Kim at Samsung Research**, *LittleBit: Ultra Low-Bit Quantization via Latent Factorization* (NeurIPS 2025). It adapts the underlying idea to a different Q8-teacher compression/recovery workflow, browser-native inference, a **NEXUS-designed** five-stage token curriculum, custom factor GGUF representations, and experimental WebGPU recovery. The five-stage curriculum is a NEXUS extension, **not a five-stage method prescribed by Samsung's paper**.
 
-**Reference:** [Lee et al. — LittleBit (arXiv:2506.13771)](https://arxiv.org/abs/2506.13771)
+**References:** [Lee et al. — LittleBit (arXiv:2506.13771)](https://arxiv.org/abs/2506.13771) · [Official SamsungLabs implementation](https://github.com/SamsungLabs/LittleBit) · [Official repository license](https://github.com/SamsungLabs/LittleBit/blob/main/LICENSE)
 
 Research credit belongs to the original authors. The official SamsungLabs LittleBit repository is separately licensed under **CC BY-NC 4.0**; this project's license does not supersede that or any third-party model and dataset terms.
 
