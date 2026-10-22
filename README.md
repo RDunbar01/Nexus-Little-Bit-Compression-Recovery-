@@ -5,7 +5,7 @@
 This Nexus release is not offered under Apache License 2.0. Nexus-owned software may be used only for personal, non-commercial purposes. Any other use, including commercial use, modification or redistribution, requires express written consent from the rights holder. Third-party code, models, datasets and separately licensed components retain their own licenses and notices. Previously granted rights and rights that cannot lawfully be restricted remain unchanged.
 
 
-> Draft documentation staging: application packages and browser HTML are pending a later verified commit. Any proposed version or trial path below is not a shipped release or live trial. Do not merge until package and link checks pass.
+> Draft release staging: the verified installer components and single-file HTML are included in this branch. This is not a published release; merge and live website publication remain pending review.
 
 **Version 2.7.0 · next-release staging · experimental software**
 
@@ -35,7 +35,7 @@ GPU API availability is not a successful arithmetic test or proof that a model f
 
 ## Desktop package and installation
 
-The staged desktop distribution is one ZIP containing the Python installer and its data parts. Extract the entire ZIP together before launching the installer; keep all parts beside the installer in the layout supplied by the package. Each distributed data component must be smaller than 20,000,000 bytes. The reconstructed application, installed files, downloaded model weights and total ZIP can be larger.
+The staged desktop distribution is one ZIP containing the Python installer and its data parts. Extract the entire ZIP together before launching the installer; keep all parts beside the installer in the layout supplied by the package. Each distributed data component is at most 10,000,000 bytes; every individual distribution file is below 20,000,000 bytes. The reconstructed application, installed files, downloaded model weights and total ZIP can be larger.
 
 The package entry point is `Start_Nexus.py`; keep `Nexus_payload.001.nxd`, `Nexus_payload.002.nxd` and all following parts alongside it. Run `python Start_Nexus.py` with the supported Python interpreter. The final package manifest is the authority for hashes and dependencies. Do not run an installer from a different release against these data parts. Read its change summary before confirming installation. Packaging and Windows acceptance are release gates, not implied by this README.
 
@@ -60,3 +60,9 @@ Developed by Rich Dunbar / Nexus Emerging Technology using AI-assisted coding an
 ## Wiki source
 
 [English](docs/wiki/Home.md) · [Français](docs/wiki/Home.fr.md) · [日本語](docs/wiki/Home.ja.md) · [한국어](docs/wiki/Home.ko.md). These are reviewable repository files, not a claim that the live GitHub Wiki has been published.
+
+## Included 2.7.0 package
+
+[Installation guide](releases/2.7.0/README.md) · [Python installer](releases/2.7.0/Start_Nexus.py) · [All package components](releases/2.7.0).
+
+Download the entire version directory together and run Start_Nexus.py with all five Nexus_payload data files beside it. The native installer validates the packaged data. The root browser HTML is a separate self-contained trial; GitHub's file viewer does not execute it and no live Pages deployment is claimed.
