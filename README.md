@@ -13,9 +13,9 @@ Once published, open the link and choose **Check WebGPU adapter** to inspect the
 This Nexus release is not offered under Apache License 2.0. Nexus-owned software may be used only for personal, non-commercial purposes. Any other use, including commercial use, modification or redistribution, requires express written consent from the rights holder. Third-party code, models, datasets and separately licensed components retain their own licenses and notices. Previously granted rights and rights that cannot lawfully be restricted remain unchanged.
 
 
-> Draft release staging: the verified installer components and single-file HTML are included in this branch. This is not a published release; merge and live website publication remain pending review.
+> The reviewed source, installer components and single-file HTML are published on the main branch. GitHub Pages activation is separate and remains pending. Native Windows/Radeon qualification remains pending.
 
-**Version 2.7.0 · next-release staging · experimental software**
+**Version 2.7.0 · published source and installer components · experimental software**
 
 Explore low-bit factor compression and teacher-guided recovery of supported local language models.
 
@@ -31,7 +31,7 @@ Research credit: Banseok Lee, Dongkyu Kim, Youngcheon You and Youngmin Kim, [Lit
 
 For the browser edition, select the original recovery_corpus.zip through its local picker, which retains checksum verification, or use the existing custom corpus import. The original corpus ZIP is not embedded in the HTML; the small pinned knowledge-job payload is retained.
 
-The desktop release is being packaged with the Nexus AI-style installer: a consolidated change summary, one installation confirmation, determinate progress and reuse of compatible existing dependencies. Only verified completion should trigger app launch and installer closure; Windows launch behavior requires its own acceptance test.
+The desktop distribution is packaged with the Nexus AI-style installer: a consolidated change summary, one installation confirmation, determinate progress and reuse of compatible existing dependencies. Only verified completion should trigger app launch and installer closure; Windows launch behavior requires its own acceptance test.
 
 ## Browser capabilities and limits
 
@@ -43,9 +43,9 @@ A WebGPU API or adapter check is not a successful arithmetic test, a model-fit r
 
 ## Desktop package and installation
 
-The staged desktop distribution is one ZIP containing the Python installer and its data parts. Extract the entire ZIP together before launching the installer; keep all parts beside the installer in the layout supplied by the package. Each distributed data component is at most 10,000,000 bytes; every individual distribution file is below 20,000,000 bytes. The reconstructed application, installed files, downloaded model weights and total ZIP can be larger.
+The desktop distribution contains the Python installer and its data parts in the versioned package directory below. Download all files together, preserving the supplied layout; if using a ZIP, extract it completely before launching the installer. Keep all parts beside the installer. Each distributed data component is at most 10,000,000 bytes; every individual distribution file is below 20,000,000 bytes. The reconstructed application, installed files, downloaded model weights and total ZIP can be larger.
 
-The package entry point is `Start_Nexus.py`; keep `Nexus_payload.001.nxd`, `Nexus_payload.002.nxd` and all following parts alongside it. Run `python Start_Nexus.py` with the supported Python interpreter. The final package manifest is the authority for hashes and dependencies. Do not run an installer from a different release against these data parts. Read its change summary before confirming installation. Packaging and Windows acceptance are release gates, not implied by this README.
+The package entry point is `Start_Nexus.py`; keep `Nexus_payload.001.nxd`, `Nexus_payload.002.nxd` and all following parts alongside it. Run `python Start_Nexus.py` with the supported Python interpreter. The final package manifest is the authority for hashes and dependencies. Do not run an installer from a different release against these data parts. Read its change summary before confirming installation. Recorded package review and isolated extraction checks do not establish native Windows acceptance.
 
 ## Python and native runtime requirements
 
@@ -65,7 +65,7 @@ The source handoff passed recorded CPU regression and frontend checks. Browser e
 
 Developed by Rich Dunbar / Nexus Emerging Technology using AI-assisted coding and an iterative build–measure–learn process. Existing repository licenses and third-party notices remain authoritative. Model, dataset and upstream-code terms apply separately; this README grants no new reuse rights.
 
-[Previous README, including original research citations and credits](docs/README_PREVIOUS.md). Historical release details there are not claims about this staged edition.
+[Previous README, including original research citations and credits](docs/README_PREVIOUS.md). Historical release details there are not claims about this edition.
 
 ## Wiki source
 
