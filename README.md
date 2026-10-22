@@ -1,21 +1,23 @@
 # Nexus Compression & Recovery Studio
 
-## [Try in your browser](<https://rdunbar01.github.io/Nexus-Little-Bit-Compression-Recovery-/Nexus_Compression_Recovery_Studio_v2_7_Browser.html>) · pending activation
+## [Try in your browser](<https://rdunbar01.github.io/Nexus-Little-Bit-Compression-Recovery-/Nexus_Compression_Recovery_Studio_v2_7_Browser.html>) · live browser trial
 
-**Pages is not activated or verified for this release yet.** The link above is its planned HTTPS launch address, not a claim that a live trial is available. The exact [single-file HTML](./Nexus_Compression_Recovery_Studio_v2_7_Browser.html) is in the repository root; GitHub's source viewer does not execute it.
+**The 2.7.1 browser trial is live on GitHub Pages.** The exact link above was opened and its trial interface verified on 22 October 2026 after the startup diagnostics fix. This confirms page availability and initial interface startup, not full-model execution or physical GPU qualification. The exact [single-file HTML](./Nexus_Compression_Recovery_Studio_v2_7_Browser.html) is in the repository root; GitHub's source viewer does not execute it.
 
-Once published, open the link and choose **Check WebGPU adapter** to inspect the interface and browser capability. The first-10-seconds goal is to reach the UI and check capability, not to download a model, finish training or guarantee inference. Load time depends on your connection and device.
+Open the link and choose **Check WebGPU adapter** to inspect the interface and browser capability. The first-10-seconds goal is to reach the UI and check capability, not to download a model, finish training or guarantee inference. Load time depends on your connection and device.
 
-**Browser trial: no Python required. Native PyTorch backend: full download required.** Download every component in [releases/2.7.0](releases/2.7.0/), not just the HTML or installer. The browser does not contain or run Python/PyTorch. See [Python and native runtime requirements](#python-and-native-runtime-requirements).
+**Browser trial: no Python required. Native PyTorch backend: full download required.** Download every component in [releases/2.7.1](releases/2.7.1/), not just the HTML or installer. The browser does not contain or run Python/PyTorch. See [Python and native runtime requirements](#python-and-native-runtime-requirements).
 
 ## Current release licensing
 
 This Nexus release is not offered under Apache License 2.0. Nexus-owned software may be used only for personal, non-commercial purposes. Any other use, including commercial use, modification or redistribution, requires express written consent from the rights holder. Third-party code, models, datasets and separately licensed components retain their own licenses and notices. Previously granted rights and rights that cannot lawfully be restricted remain unchanged.
 
 
-> The reviewed source, installer components and single-file HTML are published on the main branch. GitHub Pages activation is separate and remains pending. Native Windows/Radeon qualification remains pending.
+> The reviewed source, installer components and single-file HTML are published on the main branch. The 2.7.1 browser trial linked above is published on GitHub Pages. Native Windows/Radeon qualification remains pending.
 
-**Version 2.7.0 · published source and installer components · experimental software**
+**Version 2.7.1 · published source and installer components · experimental software**
+
+**2.7.1 startup hotfix:** the residency diagnostics panel waits for its workflow controls, and native title updates no longer starve interface timers. The 2.7.1 browser trial is published separately at the stable link above. The previous [2.7.0 components](releases/2.7.0/) remain available for rollback; do not mix versions.
 
 Explore low-bit factor compression and teacher-guided recovery of supported local language models.
 
@@ -71,8 +73,8 @@ Developed by Rich Dunbar / Nexus Emerging Technology using AI-assisted coding an
 
 [English](docs/wiki/Home.md) · [Français](docs/wiki/Home.fr.md) · [日本語](docs/wiki/Home.ja.md) · [한국어](docs/wiki/Home.ko.md). These are reviewable repository files, not a claim that the live GitHub Wiki has been published.
 
-## Included 2.7.0 package
+## Included 2.7.1 package
 
-[Installation guide](releases/2.7.0/README.md) · [Python installer](releases/2.7.0/Start_Nexus.py) · [All package components](releases/2.7.0).
+[Installation guide](releases/2.7.1/README.md) · [Python installer](releases/2.7.1/Start_Nexus.py) · [All package components](releases/2.7.1).
 
-Download the entire version directory together and run Start_Nexus.py with all five Nexus_payload data files beside it. The native installer validates the packaged data. The root browser HTML is a separate self-contained trial; GitHub's file viewer does not execute it and no live Pages deployment is claimed.
+Download the entire version directory together and run Start_Nexus.py with all five Nexus_payload data files beside it. The native installer validates the packaged data. The root browser HTML is a separate self-contained trial published at the GitHub Pages link above; GitHub's file viewer does not execute it.
