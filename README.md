@@ -1,5 +1,13 @@
 # Nexus Compression & Recovery Studio
 
+## [Try in your browser](<https://rdunbar01.github.io/Nexus-Little-Bit-Compression-Recovery-/Nexus_Compression_Recovery_Studio_v2_7_Browser.html>) · pending activation
+
+**Pages is not activated or verified for this release yet.** The link above is its planned HTTPS launch address, not a claim that a live trial is available. The exact [single-file HTML](./Nexus_Compression_Recovery_Studio_v2_7_Browser.html) is in the repository root; GitHub's source viewer does not execute it.
+
+Once published, open the link and choose **Check WebGPU adapter** to inspect the interface and browser capability. The first-10-seconds goal is to reach the UI and check capability, not to download a model, finish training or guarantee inference. Load time depends on your connection and device.
+
+**Browser trial: no Python required. Native PyTorch backend: full download required.** Download every component in [releases/2.7.0](releases/2.7.0/), not just the HTML or installer. The browser does not contain or run Python/PyTorch. See [Python and native runtime requirements](#python-and-native-runtime-requirements).
+
 ## Current release licensing
 
 This Nexus release is not offered under Apache License 2.0. Nexus-owned software may be used only for personal, non-commercial purposes. Any other use, including commercial use, modification or redistribution, requires express written consent from the rights holder. Third-party code, models, datasets and separately licensed components retain their own licenses and notices. Previously granted rights and rights that cannot lawfully be restricted remain unchanged.
@@ -25,13 +33,13 @@ For the browser edition, select the original recovery_corpus.zip through its loc
 
 The desktop release is being packaged with the Nexus AI-style installer: a consolidated change summary, one installation confirmation, determinate progress and reuse of compatible existing dependencies. Only verified completion should trigger app launch and installer closure; Windows launch behavior requires its own acceptance test.
 
-## Browser trial: staged, not yet published
+## Browser capabilities and limits
 
-[Open the single-file browser edition](./Nexus_Compression_Recovery_Studio_v2_7_Browser.html). This relative link names the bundled HTML source; GitHub's file viewer does not execute it. An instant browser-trial link will be added only after an HTTPS Pages deployment has been approved and verified. No live deployment is claimed here.
+Explore compression and recovery controls with supported local inputs. The original recovery_corpus.zip is not embedded; select it with the local picker for checksum verification or use the existing custom-corpus import.
 
-Use a compatible browser with WebGPU on HTTPS or a supported secure localhost origin. Select local inputs through the file pickers. The edition includes its JavaScript, CSS and WGSL kernels in one HTML file, with no runtime CDN dependency. Online dataset downloads, server model bridges, Python, PyTorch and native hardware monitoring are not available in this browser-only build. Runtime network requests are blocked. External documentation links are opened only when selected.
+Use a compatible WebGPU browser on HTTPS or a supported secure localhost origin. The single file includes its JavaScript, CSS and WGSL kernels without a runtime CDN dependency. Browser GPU work uses the custom JavaScript/WebGPU engine, not PyTorch. Online dataset downloads, server model bridges and native hardware monitoring are unavailable; runtime network requests are blocked. External documentation links open only when selected.
 
-GPU API availability is not a successful arithmetic test or proof that a model fits. Physical Windows 11/Radeon/WebGPU execution remains a separate qualification step.
+A WebGPU API or adapter check is not a successful arithmetic test, a model-fit result or a performance measurement. Physical Windows 11/Radeon/WebGPU execution remains a separate qualification step.
 
 ## Desktop package and installation
 
@@ -39,11 +47,13 @@ The staged desktop distribution is one ZIP containing the Python installer and i
 
 The package entry point is `Start_Nexus.py`; keep `Nexus_payload.001.nxd`, `Nexus_payload.002.nxd` and all following parts alongside it. Run `python Start_Nexus.py` with the supported Python interpreter. The final package manifest is the authority for hashes and dependencies. Do not run an installer from a different release against these data parts. Read its change summary before confirming installation. Packaging and Windows acceptance are release gates, not implied by this README.
 
-### Desktop prerequisites
+## Python and native runtime requirements
 
-The current AMD installer gate targets Windows 11 **25H2**, an existing compatible AMD driver, and standard x64 CPython **3.11–3.14**. Do not generalize this gate to every Windows 11 release. Physical Windows/WebView2/Radeon acceptance remains pending. No global drivers, compiler or PATH changes are part of this installer.
+- **Recommended launcher: standard 64-bit CPython 3.12.** The installer advertises Python **3.11–3.14**, but the bootstrap itself does not enforce that version range. Opening the installer with another version is not evidence that the native backend is compatible.
+- **New AMD runtime installation requires standard, non-free-threaded, 64-bit CPython 3.11–3.14** on Windows 11 **25H2**. Existing runtimes are tested before that installation gate and are reused only when the runtime probe passes; their Python must match their installed PyTorch wheels. No wider Python-version compatibility is certified here.
+- The packaged native probe expects **PyTorch 2.14.0+rocm10.1.0**, HIP and the configured RX 7900 XT/XTX device, then performs a finite FP32 forward/backward check. Python, AMD drivers and compiler prerequisites are not installed or changed by this package. Check the [official AMD compatibility matrix](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html) for the exact OS/GPU/driver combination.
 
-The installer probes and reuses compatible existing PyTorch unchanged. If no runtime passes, only the product-owned pinned AMD dependencies are eligible for installation. Missing desktop dependencies are app-local.
+These are installer/runtime conditions, not completed physical Windows, WebView2, Radeon or full-model qualification. A successful probe does not qualify every precision, compilation mode or workload. Recovery also provisionally admits Windows 11 **26H2 build 26300+**. That source-code allowance is not a completed platform qualification or an extension of AMD’s documented support matrix.
 
 ## Measurement and validation
 
