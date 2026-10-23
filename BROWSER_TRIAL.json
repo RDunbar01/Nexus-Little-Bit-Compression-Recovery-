@@ -1,0 +1,12 @@
+{
+  "file": "Nexus_Compression_Recovery_Studio_v2_7_Browser.html",
+  "bytes": 4791007,
+  "sha256": "3a96db6e8883a51ac344b894a5c2b3bfdc58272f2ed52d9b94e86644dc034581",
+  "git_blob_sha": "3f7441a46689a76696f5368fa986fb84d9565856",
+  "change": "Commercial testing and evaluation notice and linked permission only. Browser computation and native release payload are unchanged.",
+  "checks": {
+    "static_dependency_and_network_policy": "passed",
+    "full_dom_regression": "passed",
+    "physical_gpu_execution": "not_run"
+  }
+}

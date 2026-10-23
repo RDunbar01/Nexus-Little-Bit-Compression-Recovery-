@@ -1,14 +1,33 @@
-# Nexus Compression & Recovery Studio — Home
+# Nexus Compression & Recovery Studio
 
-## [Try in your browser](<https://rdunbar01.github.io/Nexus-Little-Bit-Compression-Recovery-/Nexus_Compression_Recovery_Studio_v2_7_Browser.html>) · published browser entry
+**Version 2.7.1**
 
-The HTTPS browser entry is published and its initial screen has been checked. This is not full WebGPU, Windows or Radeon workload qualification. GitHub’s HTML source viewer does not execute the application.
+Compress supported language models into low-bit factor representations, then use recovery training to assess how much language quality can be restored.
 
-The native **2.7.1** package is published on main. This startup hotfix prevents native title updates from starving interface timers. Browser **2.7.1** is live at the stable v2_7_Browser link; its residency panel waits for the workflow controls and remains behind the startup notice. The initial screen was checked without accepting that notice or running a model. Prior releases remain available; do not mix their components. Package review and extraction checks passed, but physical Windows, WebView2, Radeon and full-model qualification remain outstanding.
+**[Try in your browser](https://rdunbar01.github.io/Nexus-Little-Bit-Compression-Recovery-/Nexus_Compression_Recovery_Studio_v2_7_Browser.html)** · [Download the desktop components](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/tree/main/releases/2.7.1) · [README](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/blob/main/README.md)
 
-Open the link and choose **Check WebGPU adapter**. The first-10-seconds goal is to inspect the UI and capability, not to download a model or guarantee training/inference. Loading depends on the connection and device.
+Open the trial to inspect the interface and choose **Check WebGPU adapter**. No Python installation is needed. The aim is a quick first look; loading a model or completing a workload depends on the inputs and device.
 
-**No Python is required for the HTML trial. A full download is required for the native PyTorch backend.** Keep the Python installer and every matching data part together. Python and PyTorch do not run in the HTML. WebGPU support, local inputs and model compatibility checks still apply.
+Native package 2.7.1; browser edition 2.7.1.
+
+## What it does
+
+- Low-bit factor compression with local model and corpus inputs.
+- Teacher-guided recovery controls and evaluation of supported models.
+- Separate browser WebGPU and installed PyTorch workflows.
+- Progress, timing and diagnostic records for comparing recovery runs.
+
+## Engineering contribution
+
+An independent implementation of a compression-and-recovery workflow that makes low-bit model experiments accessible through a local graphical interface. The Nexus recovery curriculum extends the workflow rather than reproducing an official Samsung product.
+
+## Why a single HTML file?
+
+The browser edition packages its interface, JavaScript, CSS and WGSL kernels in one HTML file. This makes online trials easy to open, link to and inspect without a build step or runtime CDN. The file contains the browser engine, not model weights or the native PyTorch backend.
+
+Use a compatible WebGPU browser over HTTPS. Runtime network requests, native hardware monitoring and local-server bridges are disabled. Actual training or evaluation requires supported inputs. The native PyTorch backend requires the full download.
+
+[English](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home) · [Français](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home.fr) · [日本語](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home.ja) · [한국어](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home.ko)
 
 ## Python and native runtime requirements
 
@@ -18,11 +37,6 @@ Open the link and choose **Check WebGPU adapter**. The first-10-seconds goal is 
 
 These are installer/runtime conditions, not completed physical Windows, WebView2, Radeon or full-model qualification. A successful probe does not qualify every precision, compilation mode or workload. Recovery also provisionally admits Windows 11 **26H2 build 26300+**. That source-code allowance is not a completed platform qualification or an extension of AMD’s documented support matrix.
 
-**2.7.1 · English**
-
-Published release documentation. See the evidence and limits below.
-
-[English](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home) · [Français](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home.fr) · [日本語](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home.ja) · [한국어](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/wiki/Home.ko)
 
 ## Purpose
 
@@ -46,11 +60,6 @@ CPU regression and static/DOM checks are not physical Windows/Radeon/WebGPU vali
 
 Developer-reported recorded recovery rate: **2,500 tokens/second**. Not independently reproduced here and not chat-generation speed. This independent Nexus work is inspired by Samsung Research LittleBit, not an official Samsung release. Sub-1-bit storage does not mean sub-1-bit training memory or proven L3-cache residency. Preserve applicable upstream licensing, including CC BY-NC 4.0 for SamsungLabs LittleBit code.
 
-## Credits and licensing
+## Use and attribution
 
-Rich Dunbar / Nexus Emerging Technology, developed with AI-assisted coding. Existing licenses and third-party research, code, model and dataset terms remain in force. This page grants no additional license.
-
-## Current release licensing
-
-This Nexus release is not offered under Apache License 2.0. Nexus-owned software may be used only for personal, non-commercial purposes. Any other use, including commercial use, modification or redistribution, requires express written consent from the rights holder. Third-party code, models, datasets and separately licensed components retain their own licenses and notices. Previously granted rights and rights that cannot lawfully be restricted remain unchanged.
-
+Rich Dunbar / Nexus Emerging Technology. Personal use and internal commercial testing and evaluation are permitted for Nexus-owned material. Distribution, modification, production deployment and other commercial use require express written consent. Third-party licenses and previously granted rights remain unchanged. [license](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/blob/main/LICENSE) · [evaluation permission (English)](https://github.com/RDunbar01/Nexus-Little-Bit-Compression-Recovery-/blob/main/COMMERCIAL_EVALUATION_PERMISSION.md).
